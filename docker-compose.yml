@@ -1,0 +1,14 @@
+version: '3.5'
+services: 
+    coursematerial:
+        image: lchz/docker-hy.github.io
+        ports:
+            - 4000:80
+        container_name: coursematerial
+    
+    watchtower:
+        image: containrrr/watchtower
+        volumes: 
+            - /var/run/docker.sock:/var/run/docker.sock
+        command: watchtower coursematerial --interval 30
+        container_name: watchtower
